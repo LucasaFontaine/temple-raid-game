@@ -24,11 +24,13 @@ public class Jump : MonoBehaviour
 
     void LateUpdate()
     {
-        // Jump when the Jump button is pressed and we are on the ground.
         if (Input.GetButtonDown("Jump") && (!groundCheck || groundCheck.isGrounded))
         {
+            // Trigger animation first
+            Jumped?.Invoke();  
+
+            // Then apply physics
             rigidbody.AddForce(Vector3.up * 100 * jumpStrength);
-            Jumped?.Invoke();
         }
     }
 }

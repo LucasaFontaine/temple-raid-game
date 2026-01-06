@@ -11,6 +11,10 @@ public class FirstPersonMovement : MonoBehaviour
     public float runSpeed = 9;
     public KeyCode runningKey = KeyCode.LeftShift;
 
+    [Header("Animations")]
+    [SerializeField]
+    private Animator _animator;
+
     Rigidbody rigidbody;
     /// <summary> Functions to override movement speed. Will use the last added override. </summary>
     public List<System.Func<float>> speedOverrides = new List<System.Func<float>>();
@@ -40,5 +44,9 @@ public class FirstPersonMovement : MonoBehaviour
 
         // Apply movement.
         rigidbody.linearVelocity = transform.rotation * new Vector3(targetVelocity.x, rigidbody.linearVelocity.y, targetVelocity.y);
+
+        // Get forward speed for animations.
+        float forwardSpeed = Vector3.Dot(rigidbody.linearVelocity, transform.forward);
+        _animator.SetFloat("forward", forwardSpeed);
     }
 }
