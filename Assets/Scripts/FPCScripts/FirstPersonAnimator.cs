@@ -25,12 +25,6 @@ public class FirstPersonAnimator : MonoBehaviour
             jump.Jumped -= OnJump; // Unsubscribe
     }
 
-    void Update()
-    {
-        // Always update grounded state
-        animator.SetBool("Grounded", groundCheck.isGrounded);
-    }
-
     void OnJump()
     {
         // Fire jump trigger once

@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 489a559d7ed2da9408cace6846cc5d54
+guid: f706a9f38130d4b4793957d8d1c56526
 ModelImporter:
   serializedVersion: 24200
   internalIDToNameTable: []
@@ -60,11 +60,11 @@ ModelImporter:
       maskSource: {instanceID: 0}
       additiveReferencePoseFrame: 0
     - serializedVersion: 16
-      name: running
+      name: run
       takeName: metarig|metarigAction
-      internalID: 14714776983925720
+      internalID: 3536513432961602234
       firstFrame: 90
-      lastFrame: 120
+      lastFrame: 110
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
@@ -91,9 +91,38 @@ ModelImporter:
     - serializedVersion: 16
       name: jump
       takeName: metarig|metarigAction
-      internalID: 4597800159387056593
+      internalID: -8467477205274376854
       firstFrame: 150
       lastFrame: 180
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: left strafe
+      takeName: metarig|metarigAction
+      internalID: -8514521339571864881
+      firstFrame: 200
+      lastFrame: 220
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
@@ -118,18 +147,18 @@ ModelImporter:
       maskSource: {instanceID: 0}
       additiveReferencePoseFrame: 0
     - serializedVersion: 16
-      name: fall
+      name: right strafe
       takeName: metarig|metarigAction
-      internalID: -8514521339571864881
-      firstFrame: 160
-      lastFrame: 180
+      internalID: -1880667434924036633
+      firstFrame: 230
+      lastFrame: 251
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
       cycleOffset: 0
       loop: 0
       hasAdditiveReferencePose: 0
-      loopTime: 0
+      loopTime: 1
       loopBlend: 0
       loopBlendOrientation: 0
       loopBlendPositionY: 0
