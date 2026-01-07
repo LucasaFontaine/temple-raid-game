@@ -34,6 +34,6 @@ public class ItemInteraction : MonoBehaviour
             }
         }
 
-        Debug.DrawRay(cam.transform.position, cam.transform.forward * interactDistance, Color.white);
+        Debug.DrawRay(cam.transform.position, cam.transform.forward * interactDistance, Color.green);
     }
 }
