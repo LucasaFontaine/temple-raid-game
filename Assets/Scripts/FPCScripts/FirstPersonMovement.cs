@@ -67,6 +67,5 @@ public class FirstPersonMovement : MonoBehaviour
 
         _animator.SetFloat("forward", forward);
         _animator.SetFloat("strafe", strafe);
-        _animator.SetBool("IsRunning", IsRunning);
     }
 }

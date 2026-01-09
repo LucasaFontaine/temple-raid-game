@@ -26,7 +26,7 @@ public class ItemInteraction : MonoBehaviour
 
         if (Physics.Raycast(ray, out RaycastHit hit, interactDistance))
         {
-            PickupItem item = hit.collider.GetComponent<PickupItem>();
+            MoneyPickup item = hit.collider.GetComponent<MoneyPickup>();
 
             if (item != null)
             {

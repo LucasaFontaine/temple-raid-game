@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class PickupItem : MonoBehaviour
+public class MoneyPickup : MonoBehaviour
 {
     [Header("Pickup Settings")]
     public int value = 10;
