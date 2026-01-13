@@ -1034,7 +1034,7 @@ GameObject:
   - component: {fileID: 5542267024064125809}
   m_Layer: 0
   m_Name: First Person Controller v2
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
