@@ -174,7 +174,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   distanceThreshold: 0.15
-  isGrounded: 1
+  isGrounded: 0
 --- !u!1 &1777033802178571076
 GameObject:
   m_ObjectHideFlags: 0
@@ -350,6 +350,7 @@ GameObject:
   - component: {fileID: 3904313249721692014}
   - component: {fileID: 6395325507720499711}
   - component: {fileID: 1658147391692757397}
+  - component: {fileID: 256407326515682805}
   m_Layer: 0
   m_Name: First Person Camera
   m_TagString: MainCamera
@@ -414,7 +415,7 @@ Camera:
     serializedVersion: 2
     m_Bits: 4294967295
   m_RenderingPath: -1
-  m_TargetTexture: {fileID: 0}
+  m_TargetTexture: {fileID: 8400000, guid: 1e182b81648cd43439ff9f65c9907888, type: 2}
   m_TargetDisplay: 0
   m_TargetEye: 3
   m_HDR: 1
@@ -515,6 +516,18 @@ MonoBehaviour:
     m_VarianceClampScale: 0.9
     m_ContrastAdaptiveSharpening: 0
   m_Version: 2
+--- !u!114 &256407326515682805
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3111831331885956846}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 91fcfd0651309d04eb3f0425d3e481a5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ClearRenderTexture
 --- !u!1 &4546668092746074397
 GameObject:
   m_ObjectHideFlags: 0
