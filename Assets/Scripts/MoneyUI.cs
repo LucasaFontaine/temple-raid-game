@@ -15,12 +15,7 @@ public class MoneyUI : MonoBehaviour
     {
         playerMoney.MoneyChanged += UpdateMoney;
     }
-
-    void OnDisable()
-    {
-        playerMoney.MoneyChanged -= UpdateMoney;
-    }
-
+    
     void UpdateMoney(int amount)
     {
         moneyText.text = amount.ToString();
