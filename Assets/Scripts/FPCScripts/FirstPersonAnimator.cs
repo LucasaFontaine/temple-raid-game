@@ -13,21 +13,28 @@ public class FirstPersonAnimator : MonoBehaviour
         jump = GetComponent<Jump>();
     }
 
+    void Update()
+    {
+        animator.SetBool("Grounded", groundCheck.isGrounded);
+    }
+
     void OnEnable()
     {
         if (jump != null)
-            jump.Jumped += OnJump; // Subscribe to jump event
+            jump.Jumped += OnJump;
     }
 
     void OnDisable()
     {
         if (jump != null)
-            jump.Jumped -= OnJump; // Unsubscribe
+            jump.Jumped -= OnJump;
     }
 
     void OnJump()
     {
-        // Fire jump trigger once
         animator.SetTrigger("Jump");
+
+        if (groundCheck != null)
+            groundCheck.NotifyJump(); // prevent ground detection for a short time
     }
 }

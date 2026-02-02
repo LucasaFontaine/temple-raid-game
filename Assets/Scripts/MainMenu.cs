@@ -5,6 +5,6 @@ public class MainMenu : MonoBehaviour
     public void StartGame()
     {
         // Load the main game scene
-        UnityEngine.SceneManagement.SceneManager.LoadScene("Map1");
+        UnityEngine.SceneManagement.SceneManager.LoadScene("Loading");
     }
 }

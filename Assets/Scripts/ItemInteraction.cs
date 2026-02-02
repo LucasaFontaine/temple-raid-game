@@ -2,6 +2,9 @@ using UnityEngine;
 
 public class ItemInteraction : MonoBehaviour
 {
+
+    [SerializeField] Animator animator;
+
     public float interactDistance = 3f;
     public KeyCode interactKey = KeyCode.E;
 
@@ -10,14 +13,16 @@ public class ItemInteraction : MonoBehaviour
     void Awake()
     {
         cam = GetComponentInChildren<Camera>();
+        animator = GetComponentInChildren<Animator>();
     }
 
     void Update()
     {
         if (Input.GetKeyDown(interactKey))
         {
+            animator.SetTrigger("Interact");
             TryInteract();
-        }
+        }   
     }
 
     void TryInteract()

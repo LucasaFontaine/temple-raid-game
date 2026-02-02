@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
+using Photon.Pun;
 
-public class Jump : MonoBehaviour
+public class Jump : MonoBehaviourPun
 {
     Rigidbody rigidbody;
     public float jumpStrength = 2;
@@ -18,6 +19,11 @@ public class Jump : MonoBehaviour
 
     void Awake()
     {
+        if (!photonView.IsMine)
+        {
+            // completely disable this script on remote players
+            this.enabled = false;
+        }
         // Get rigidbody.
         rigidbody = GetComponent<Rigidbody>();
     }

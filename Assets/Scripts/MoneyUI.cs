@@ -8,16 +8,36 @@ public class MoneyUI : MonoBehaviour
 
     void Start()
     {
-        moneyText.text = "0";
+        if (moneyText != null)
+            moneyText.text = "0";
     }
 
     void OnEnable()
     {
-        playerMoney.MoneyChanged += UpdateMoney;
+        if (playerMoney == null)
+        {
+            // Assign local player's money automatically
+            PlayerMoney localMoney = FindObjectOfType<PlayerMoney>();
+            if (localMoney != null)
+                playerMoney = localMoney;
+        }
+
+        if (playerMoney != null)
+        {
+            playerMoney.MoneyChanged += UpdateMoney;
+            UpdateMoney(playerMoney.money);
+        }
     }
-    
+
+    void OnDisable()
+    {
+        if (playerMoney != null)
+            playerMoney.MoneyChanged -= UpdateMoney;
+    }
+
     void UpdateMoney(int amount)
     {
-        moneyText.text = amount.ToString();
+        if (moneyText != null)
+            moneyText.text = amount.ToString();
     }
 }

@@ -1,71 +1,64 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
+using Photon.Pun;
 
-public class FirstPersonMovement : MonoBehaviour
+[RequireComponent(typeof(Rigidbody))]
+public class FirstPersonMovement : MonoBehaviourPun
 {
-    public float speed = 5;
-
-    [Header("Running")]
+    [Header("Movement Settings")]
+    public float walkSpeed = 5f;
+    public float runSpeed = 9f;
     public bool canRun = true;
-    public bool IsRunning { get; private set; }
-    public float runSpeed = 9;
-    public KeyCode runningKey = KeyCode.LeftShift;
+    public KeyCode runKey = KeyCode.LeftShift;
 
     [Header("Animations")]
     [SerializeField] private Animator _animator;
 
-    Rigidbody rigidbody;
+    private Rigidbody rb;
+    public bool IsRunning { get; private set; }
 
-    /// <summary>
-    /// Functions to override movement speed. Will use the last added override.
-    /// </summary>
+    // Optional overrides for speed
     public List<System.Func<float>> speedOverrides = new List<System.Func<float>>();
 
+    PhotonView view;
+    
     void Awake()
-    {
-        rigidbody = GetComponent<Rigidbody>();
+    {   
+        view = GetComponent<PhotonView>();
+        if (!photonView.IsMine)
+        {
+            // completely disable this script on remote players
+            this.enabled = false;
+        }
+
+        rb = GetComponent<Rigidbody>();
     }
 
     void FixedUpdate()
     {
-        // Update IsRunning from input.
-        IsRunning = canRun && Input.GetKey(runningKey);
 
-        // Get target moving speed.
-        float targetMovingSpeed = IsRunning ? runSpeed : speed;
+        // Check running input
+        IsRunning = canRun && Input.GetKey(runKey);
+
+        // Determine speed
+        float targetSpeed = IsRunning ? runSpeed : walkSpeed;
         if (speedOverrides.Count > 0)
-        {
-            targetMovingSpeed = speedOverrides[speedOverrides.Count - 1]();
-        }
+            targetSpeed = speedOverrides[speedOverrides.Count - 1]();
 
-        // Get target velocity from input.
-        Vector2 input = new Vector2(
-            Input.GetAxis("Horizontal"),
-            Input.GetAxis("Vertical")
-        );
+        // Get input
+        Vector2 input = new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
 
-        Vector3 worldVelocity = transform.rotation * new Vector3(
-            input.x * targetMovingSpeed,
-            rigidbody.linearVelocity.y,
-            input.y * targetMovingSpeed
-        );
+        // Convert to world velocity
+        Vector3 move = transform.rotation * new Vector3(input.x * targetSpeed, rb.linearVelocity.y, input.y * targetSpeed);
+        rb.linearVelocity = move;
 
-        // Apply movement.
-        rigidbody.linearVelocity = worldVelocity;
+        // Send animation data
+        Vector3 localVel = transform.InverseTransformDirection(rb.linearVelocity);
+        float maxSpeed = IsRunning ? runSpeed : walkSpeed;
+        float forward = Mathf.Abs(localVel.z / maxSpeed) < 0.1f ? 0f : localVel.z / maxSpeed;
+        float strafe  = Mathf.Abs(localVel.x / maxSpeed) < 0.1f ? 0f : localVel.x / maxSpeed;
 
-        // -------- ANIMATION DATA --------
-
-        // Convert world velocity to local space
-        Vector3 localVelocity =
-            transform.InverseTransformDirection(rigidbody.linearVelocity);
-
-        // Normalize for blend tree (-1 to 1)
-        float maxSpeed = IsRunning ? runSpeed : speed;
-
-        float forward = Mathf.Clamp(localVelocity.z / maxSpeed, -1f, 1f);
-        float strafe  = Mathf.Clamp(localVelocity.x / maxSpeed, -1f, 1f);
-
-        _animator.SetFloat("forward", forward);
-        _animator.SetFloat("strafe", strafe);
+        _animator.SetFloat("forward", Mathf.Clamp(forward, -1f, 1f));
+        _animator.SetFloat("strafe", Mathf.Clamp(strafe, -1f, 1f));
     }
 }
