@@ -1,7 +1,6 @@
-﻿using UnityEngine;
-using Photon.Pun;
+using UnityEngine;
 
-public class FirstPersonLook : MonoBehaviourPun
+public class T_FirstPersonLook : MonoBehaviour
 {
     [Header("References")]
     public Transform character;        // the player body
@@ -21,16 +20,8 @@ public class FirstPersonLook : MonoBehaviourPun
     private Vector2 velocity;
     private Vector2 frameVelocity;
 
-    PhotonView view;
-
     void Start()
     {
-        view = GetComponent<PhotonView>();
-        if (!photonView.IsMine)
-        {
-            // completely disable this script on remote players
-            this.enabled = false;
-        }
 
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
@@ -43,7 +34,6 @@ public class FirstPersonLook : MonoBehaviourPun
 
     void Update()
     {
-        if (!photonView.IsMine) return; // only local player rotates
 
         if (!canLook) return;
 

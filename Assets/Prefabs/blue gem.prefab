@@ -84,7 +84,7 @@ PrefabInstance:
       addedObject: {fileID: 6366774072863668293}
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: d3d72f04e3eb23f468f22e3936a6c94b, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 5993171052160812437}
+      addedObject: {fileID: -2468148516108617704}
   m_SourcePrefab: {fileID: 100100000, guid: d3d72f04e3eb23f468f22e3936a6c94b, type: 3}
 --- !u!1 &3396650371242379720 stripped
 GameObject:
@@ -140,7 +140,7 @@ MeshCollider:
   m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: 5006569119915696325, guid: d3d72f04e3eb23f468f22e3936a6c94b, type: 3}
---- !u!114 &5993171052160812437
+--- !u!114 &-2468148516108617704
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -149,7 +149,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 3396650371242379720}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 06a37574ba15ede4686e9162606652df, type: 3}
+  m_Script: {fileID: 11500000, guid: f54f5fc7e0ce24c4d8fc1b832252e1f3, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::PickupItem
-  value: 100
+  m_EditorClassIdentifier: Assembly-CSharp::PickupableItem
+  itemName: Blue Gem
+  itemIcon: {fileID: 21300000, guid: 303740ebb0f5583498b9c6683372591c, type: 3}
+  itemDescription: 
+  pickupRange: 1.5
+  pickupKey: 101
+  autoPickup: 0
