@@ -3929,6 +3929,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Hud
       objectReference: {fileID: 0}
+    - target: {fileID: 3037720852438732703, guid: 1daa346eb672a5c4c86fbd54c8cbd84b, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3756074783441156536, guid: 1daa346eb672a5c4c86fbd54c8cbd84b, type: 3}
       propertyPath: playerLook
       value: 
@@ -7922,6 +7926,10 @@ PrefabInstance:
     - target: {fileID: 183550792910740906, guid: 0aa9a1c27400a6846b58f4feeb1eecdc, type: 3}
       propertyPath: m_Name
       value: Testing First Person Controller
+      objectReference: {fileID: 0}
+    - target: {fileID: 183550792910740906, guid: 0aa9a1c27400a6846b58f4feeb1eecdc, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2152178885878786931, guid: 0aa9a1c27400a6846b58f4feeb1eecdc, type: 3}
       propertyPath: m_LocalPosition.x
