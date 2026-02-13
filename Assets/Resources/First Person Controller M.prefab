@@ -397,7 +397,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2377452417380527395}
-  - component: {fileID: 5534695861537323451}
+  - component: {fileID: 3179158347433078610}
   m_Layer: 5
   m_Name: InventoryManager
   m_TagString: Untagged
@@ -424,7 +424,7 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &5534695861537323451
+--- !u!114 &3179158347433078610
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -433,7 +433,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1551553767574967473}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ed967cc5e42b7d6449bd1eb38b7a48fc, type: 3}
+  m_Script: {fileID: 11500000, guid: d4b5d73d248c47148ae3d2746d49d11f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::InventoryManager
   maxSlots: 5
@@ -1055,7 +1055,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MoneyUI
   moneyText: {fileID: 9153032412105124173}
-  playerMoney: {fileID: 927496432728732131}
+  playerMoney: {fileID: 0}
 --- !u!1 &2848432110924827539
 GameObject:
   m_ObjectHideFlags: 0
@@ -1415,9 +1415,9 @@ GameObject:
   - component: {fileID: 7255710497399967513}
   - component: {fileID: 6797928602553648442}
   - component: {fileID: 7224329538492089126}
-  - component: {fileID: 927496432728732131}
   - component: {fileID: 26194273723931475}
   - component: {fileID: 7589838966915584371}
+  - component: {fileID: 4311577481455158764}
   - component: {fileID: 946471929968358784}
   - component: {fileID: -6484081965456480277}
   - component: {fileID: 6680059132718322137}
@@ -1561,19 +1561,6 @@ MonoBehaviour:
   animator: {fileID: 7647226270814615043}
   interactDistance: 5
   interactKey: 101
---- !u!114 &927496432728732131
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3552255921584938658}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3e8e5455741857d4089e50a21d5b2e97, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::PlayerMoney
-  startingMoney: 0
 --- !u!114 &26194273723931475
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1587,7 +1574,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerHealth
   maxHealth: 100
-  playerMoney: {fileID: 927496432728732131}
+  playerMoney: {fileID: 0}
 --- !u!114 &7589838966915584371
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1607,6 +1594,19 @@ MonoBehaviour:
   flashFadeSpeed: 6
   healthyColor: {r: 0, g: 0, b: 0, a: 1}
   lowHealthColor: {r: 1, g: 0, b: 0, a: 1}
+--- !u!114 &4311577481455158764
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3552255921584938658}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d7862545aa67bdd4b9677d38fd2f8499, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerMoney
+  currentMoney: 0
 --- !u!114 &946471929968358784
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2249,7 +2249,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   distanceThreshold: 0.2
-  isGrounded: 1
+  isGrounded: 0
   jumpGroundedDelay: 0.2
 --- !u!1 &6305537326974402709
 GameObject:

@@ -67,7 +67,7 @@ PrefabInstance:
     - target: {fileID: -8617856501877048174, guid: d3d72f04e3eb23f468f22e3936a6c94b, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
-      objectReference: {fileID: 2100000, guid: ce9a5c7623298d046bf6c3c84b3cea0e, type: 2}
+      objectReference: {fileID: 2100000, guid: e843530754da65c4a98f295f37824ee3, type: 2}
     - target: {fileID: -8617856501877048174, guid: d3d72f04e3eb23f468f22e3936a6c94b, type: 3}
       propertyPath: 'm_Materials.Array.data[1]'
       value: 
@@ -78,7 +78,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: d3d72f04e3eb23f468f22e3936a6c94b, type: 3}
       propertyPath: m_Name
-      value: red gemfixed
+      value: blue gemfixed
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -92,7 +92,10 @@ PrefabInstance:
       addedObject: {fileID: 5836496131683161109}
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: d3d72f04e3eb23f468f22e3936a6c94b, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 9162774066909358692}
+      addedObject: {fileID: 9148429480493773610}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: d3d72f04e3eb23f468f22e3936a6c94b, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1551639081762559317}
   m_SourcePrefab: {fileID: 100100000, guid: d3d72f04e3eb23f468f22e3936a6c94b, type: 3}
 --- !u!1 &2691862204492253937 stripped
 GameObject:
@@ -148,7 +151,7 @@ MeshCollider:
   m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: 5006569119915696325, guid: d3d72f04e3eb23f468f22e3936a6c94b, type: 3}
---- !u!114 &9162774066909358692
+--- !u!114 &9148429480493773610
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -157,7 +160,34 @@ MonoBehaviour:
   m_GameObject: {fileID: 2691862204492253937}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 06a37574ba15ede4686e9162606652df, type: 3}
+  m_Script: {fileID: 11500000, guid: a89b845fee6a416439f794c98c074f13, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::PickupItem
-  value: 50
+  m_EditorClassIdentifier: Assembly-CSharp::PickupableItem
+  itemName: gem
+  itemIcon: {fileID: 21300000, guid: 303740ebb0f5583498b9c6683372591c, type: 3}
+  itemDescription: 
+  pickupRange: 3
+  pickupKey: 101
+  autoPickup: 0
+--- !u!114 &1551639081762559317
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2691862204492253937}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aa584fbee541324448dd18d8409c7a41, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: PhotonUnityNetworking::Photon.Pun.PhotonView
+  ObservedComponentsFoldoutOpen: 1
+  Group: 0
+  prefixField: -1
+  Synchronization: 3
+  OwnershipTransfer: 1
+  observableSearch: 2
+  ObservedComponents: []
+  sceneViewId: 0
+  InstantiationId: 0
+  isRuntimeInstantiated: 0

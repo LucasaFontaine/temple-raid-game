@@ -108,7 +108,10 @@ PrefabInstance:
       addedObject: {fileID: 7942309742830628699}
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 5af8ce1ed1628da498a11e81d49d154c, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 3005185688046266767}
+      addedObject: {fileID: 8845635395639963363}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 5af8ce1ed1628da498a11e81d49d154c, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 8316517242060751117}
   m_SourcePrefab: {fileID: 100100000, guid: 5af8ce1ed1628da498a11e81d49d154c, type: 3}
 --- !u!1 &7657956698189239727 stripped
 GameObject:
@@ -164,7 +167,7 @@ MeshCollider:
   m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: 7461364857155233189, guid: 5af8ce1ed1628da498a11e81d49d154c, type: 3}
---- !u!114 &3005185688046266767
+--- !u!114 &8845635395639963363
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -173,7 +176,29 @@ MonoBehaviour:
   m_GameObject: {fileID: 7657956698189239727}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 06a37574ba15ede4686e9162606652df, type: 3}
+  m_Script: {fileID: 11500000, guid: 94806129dd4733d4da2652f4e3e225aa, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::PickupItem
-  value: 10
+  m_EditorClassIdentifier: Assembly-CSharp::MoneyPickup
+  value: 25
+--- !u!114 &8316517242060751117
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7657956698189239727}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aa584fbee541324448dd18d8409c7a41, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: PhotonUnityNetworking::Photon.Pun.PhotonView
+  ObservedComponentsFoldoutOpen: 1
+  Group: 0
+  prefixField: -1
+  Synchronization: 3
+  OwnershipTransfer: 1
+  observableSearch: 2
+  ObservedComponents: []
+  sceneViewId: 0
+  InstantiationId: 0
+  isRuntimeInstantiated: 0

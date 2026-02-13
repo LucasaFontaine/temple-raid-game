@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class T_Jump : MonoBehaviour
 {
-    Rigidbody rigidbody;
+    Rigidbody rb;
     public float jumpStrength = 2;
     public event System.Action Jumped;
 
@@ -19,7 +19,7 @@ public class T_Jump : MonoBehaviour
     void Awake()
     {
         // Get rigidbody.
-        rigidbody = GetComponent<Rigidbody>();
+        rb = GetComponent<Rigidbody>();
     }
 
     void LateUpdate()
@@ -30,7 +30,7 @@ public class T_Jump : MonoBehaviour
             Jumped?.Invoke();  
 
             // Then apply physics
-            rigidbody.AddForce(Vector3.up * 100 * jumpStrength);
+            rb.AddForce(Vector3.up * 100 * jumpStrength);
         }
     }
 }

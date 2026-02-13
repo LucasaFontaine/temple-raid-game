@@ -1,4 +1,5 @@
 using UnityEngine;
+using Photon.Pun;
 
 public class PlayerHealth : MonoBehaviour
 {
@@ -11,8 +12,16 @@ public class PlayerHealth : MonoBehaviour
     public event System.Action<int, int> HealthChanged;
     public event System.Action Died;
 
+    PhotonView photonView;
+
     void Awake()
     {
+        photonView = GetComponent<PhotonView>();
+        if (!photonView.IsMine)
+        {
+            enabled = false;
+            return;
+        }
         currentHealth = maxHealth;
     }
 
@@ -21,7 +30,6 @@ public class PlayerHealth : MonoBehaviour
         currentHealth = Mathf.Clamp(currentHealth - amount, 0, maxHealth);
         HealthChanged?.Invoke(currentHealth, maxHealth);
 
-        // 🔴 DROP MONEY HERE
         if (playerMoney != null)
         {
             int moneyLost = Random.Range(10, 31);

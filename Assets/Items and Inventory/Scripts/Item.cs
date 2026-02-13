@@ -8,7 +8,6 @@ public class Item : MonoBehaviour
     [TextArea]
     public string itemDescription;
     
-    // Optional: item-specific behavior
     public virtual void Use()
     {
         Debug.Log($"Using {itemName}");

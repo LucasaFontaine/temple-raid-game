@@ -17,14 +17,14 @@ public class MoneyUI : MonoBehaviour
         if (playerMoney == null)
         {
             // Assign local player's money automatically
-            PlayerMoney localMoney = FindObjectOfType<PlayerMoney>();
+            PlayerMoney localMoney = FindAnyObjectByType<PlayerMoney>();
             if (localMoney != null)
                 playerMoney = localMoney;
         }
 
         if (playerMoney != null)
         {
-            playerMoney.MoneyChanged += UpdateMoney;
+            playerMoney.onMoneyChanged += UpdateMoney;
             UpdateMoney(playerMoney.money);
         }
     }
@@ -32,7 +32,7 @@ public class MoneyUI : MonoBehaviour
     void OnDisable()
     {
         if (playerMoney != null)
-            playerMoney.MoneyChanged -= UpdateMoney;
+            playerMoney.onMoneyChanged -= UpdateMoney;
     }
 
     void UpdateMoney(int amount)

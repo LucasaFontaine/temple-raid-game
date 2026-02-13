@@ -1,6 +1,7 @@
 using UnityEngine;
+using Photon.Pun;
 
-public class ItemInteraction : MonoBehaviour
+public class ItemInteraction : MonoBehaviourPun
 {
 
     [SerializeField] Animator animator;
@@ -10,8 +11,15 @@ public class ItemInteraction : MonoBehaviour
 
     Camera cam;
 
+    PhotonView view;
+
     void Awake()
-    {
+    {   
+        view = GetComponent<PhotonView>();
+        if (!photonView.IsMine)        {
+            // completely disable this script on remote players
+            this.enabled = false;
+        }
         cam = GetComponentInChildren<Camera>();
         animator = GetComponentInChildren<Animator>();
     }

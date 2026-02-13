@@ -3,7 +3,7 @@ using Photon.Pun;
 
 public class Jump : MonoBehaviourPun
 {
-    Rigidbody rigidbody;
+    Rigidbody rb;
     public float jumpStrength = 2;
     public event System.Action Jumped;
 
@@ -25,7 +25,7 @@ public class Jump : MonoBehaviourPun
             this.enabled = false;
         }
         // Get rigidbody.
-        rigidbody = GetComponent<Rigidbody>();
+        rb = GetComponent<Rigidbody>();
     }
 
     void LateUpdate()
@@ -36,7 +36,7 @@ public class Jump : MonoBehaviourPun
             Jumped?.Invoke();  
 
             // Then apply physics
-            rigidbody.AddForce(Vector3.up * 100 * jumpStrength);
+            rb.AddForce(Vector3.up * 100 * jumpStrength);
         }
     }
 }

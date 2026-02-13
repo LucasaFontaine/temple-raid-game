@@ -1,6 +1,7 @@
 using UnityEngine;
+using Photon.Pun;
 
-public class InventoryManager : MonoBehaviour
+public class InventoryManager : MonoBehaviourPun
 {
     public static InventoryManager Instance { get; private set; }
 
@@ -15,20 +16,32 @@ public class InventoryManager : MonoBehaviour
 
     private void Awake()
     {
-        if (Instance == null)
+        // Only create instance for the local player
+        if (photonView.IsMine)
         {
-            Instance = this;
-            inventorySlots = new Item[maxSlots];
+            if (Instance == null)
+            {
+                Instance = this;
+                inventorySlots = new Item[maxSlots];
+            }
+            else
+            {
+                Destroy(gameObject);
+            }
         }
         else
         {
-            Destroy(gameObject);
+            // Disable this script on remote players
+            this.enabled = false;
         }
     }
 
     private void Update()
     {
-        HandleInventoryInput();
+        if (photonView.IsMine)
+        {
+            HandleInventoryInput();
+        }
     }
 
     private void HandleInventoryInput()
@@ -113,14 +126,26 @@ public class InventoryManager : MonoBehaviour
         Item item = GetSelectedItem();
         if (item != null)
         {
-            // Re-enable the item in the world
-            item.gameObject.SetActive(true);
-            
             // Position it in front of the player
             Camera mainCam = Camera.main;
+            Vector3 dropPosition = transform.position + transform.forward * 2f;
+            
             if (mainCam != null)
             {
-                item.transform.position = mainCam.transform.position + mainCam.transform.forward * 2f;
+                dropPosition = mainCam.transform.position + mainCam.transform.forward * 2f;
+            }
+
+            // Use networked drop if item supports it
+            PickupableItem pickupable = item as PickupableItem;
+            if (pickupable != null)
+            {
+                pickupable.NetworkedDrop(dropPosition);
+            }
+            else
+            {
+                // Fallback for non-networked items
+                item.gameObject.SetActive(true);
+                item.transform.position = dropPosition;
             }
 
             RemoveItem(currentSelectedSlot);

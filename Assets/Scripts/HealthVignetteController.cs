@@ -1,8 +1,9 @@
 using UnityEngine;
 using UnityEngine.Rendering;
 using UnityEngine.Rendering.Universal;
+using Photon.Pun;
 
-public class HealthVignetteController : MonoBehaviour
+public class HealthVignetteController : MonoBehaviourPun
 {
     [Header("References")]
     public PlayerHealth playerHealth;
@@ -28,8 +29,16 @@ public class HealthVignetteController : MonoBehaviour
 
     private int lastHealth;
 
+    PhotonView pv;
+
     void Awake()
     {
+        pv = GetComponent<PhotonView>();
+        if (!pv.IsMine)
+        {
+            enabled = false;
+            return;
+        }
         if (!volume.profile.TryGet(out vignette))
         {
             Debug.LogError("Vignette not found on Volume!");

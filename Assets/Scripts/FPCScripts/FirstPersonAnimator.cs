@@ -1,10 +1,23 @@
 using UnityEngine;
+using Photon.Pun;
 
-public class FirstPersonAnimator : MonoBehaviour
+public class FirstPersonAnimator : MonoBehaviourPun
 {
     [SerializeField] Animator animator;
     [SerializeField] GroundCheck groundCheck;
     [SerializeField] Jump jump;
+
+    PhotonView view;
+
+    void Start()
+    {
+        view = GetComponent<PhotonView>();
+        if (!photonView.IsMine)
+        {
+            // completely disable this script on remote players
+            this.enabled = false;
+        }
+    }
 
     void Reset()
     {
