@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.EventSystems;
+using Photon.Pun;
 
 public class PauseMenu : MonoBehaviour
 {
@@ -10,6 +11,17 @@ public class PauseMenu : MonoBehaviour
     [Header("Player Reference")]
     public FirstPersonMovement playerMovement;
     public FirstPersonLook playerLook;
+
+    void Awake()
+    {
+        // Disable this HUD for remote players' prefabs
+        PhotonView pv = GetComponentInParent<PhotonView>();
+        if (pv != null && !pv.IsMine)
+        {
+            gameObject.SetActive(false);
+            return;
+        }
+    }
 
     void Start()
     {

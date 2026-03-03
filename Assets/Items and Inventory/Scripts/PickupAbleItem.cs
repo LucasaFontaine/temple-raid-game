@@ -12,10 +12,13 @@ public class PickupableItem : Item
     private bool playerInRange = false;
     private PhotonView photonView;
 
+    // Tracked on all clients via RPC to prevent double-pickup race conditions
+    private bool isPickedUp = false;
+
     private void Start()
     {
         photonView = GetComponent<PhotonView>();
-        
+
         // Find local player only
         GameObject[] players = GameObject.FindGameObjectsWithTag("Player");
         foreach (GameObject player in players)
@@ -31,8 +34,7 @@ public class PickupableItem : Item
 
     private void Update()
     {
-        // Only check for pickup on local player's client
-        if (playerTransform == null || !gameObject.activeInHierarchy) return;
+        if (playerTransform == null || !gameObject.activeInHierarchy || isPickedUp) return;
 
         float distance = Vector3.Distance(transform.position, playerTransform.position);
         playerInRange = distance <= pickupRange;
@@ -52,25 +54,22 @@ public class PickupableItem : Item
 
     private void TryPickup()
     {
-        if (InventoryManager.Instance != null)
+        if (isPickedUp) return;
+
+        // Check space locally before sending RPC to avoid unnecessary network traffic
+        if (InventoryManager.Instance != null && InventoryManager.Instance.HasSpace())
         {
-            bool success = InventoryManager.Instance.AddItem(this);
-            if (success)
-            {
-                // Request pickup from Master Client
-                int viewID = photonView.ViewID;
-                PhotonView.Find(viewID).RPC("RPC_RequestPickup", RpcTarget.MasterClient, PhotonNetwork.LocalPlayer.ActorNumber);
-            }
+            photonView.RPC("RPC_RequestPickup", RpcTarget.MasterClient, PhotonNetwork.LocalPlayer.ActorNumber);
         }
     }
 
     [PunRPC]
     private void RPC_RequestPickup(int playerActorNumber)
     {
-        // Only Master Client executes this
-        if (PhotonNetwork.IsMasterClient)
+        // MasterClient is the authority: only approve if not already picked up
+        if (PhotonNetwork.IsMasterClient && !isPickedUp)
         {
-            // Tell all clients to disable the item
+            isPickedUp = true;
             photonView.RPC("RPC_PickupItem", RpcTarget.AllBuffered, playerActorNumber);
         }
     }
@@ -78,34 +77,39 @@ public class PickupableItem : Item
     [PunRPC]
     private void RPC_PickupItem(int playerActorNumber)
     {
-        // Disable on all clients
-        gameObject.SetActive(false);
-        Debug.Log($"Player {playerActorNumber} picked up {gameObject.name}");
-    }
+        isPickedUp = true;
 
-    [PunRPC]
-    private void RPC_DropItem(Vector3 position, int playerActorNumber)
-    {
-        // Re-enable on all clients
-        gameObject.SetActive(true);
-        transform.position = position;
-        Debug.Log($"Player {playerActorNumber} dropped {gameObject.name}");
+        // Only add to the picking player's inventory on their own client
+        if (PhotonNetwork.LocalPlayer.ActorNumber == playerActorNumber)
+        {
+            InventoryManager.Instance?.AddItem(this);
+        }
+
+        gameObject.SetActive(false);
     }
 
     [PunRPC]
     private void RPC_RequestDrop(Vector3 position, int playerActorNumber)
     {
-        // Only Master Client executes this
         if (PhotonNetwork.IsMasterClient)
         {
+            isPickedUp = false;
             photonView.RPC("RPC_DropItem", RpcTarget.AllBuffered, position, playerActorNumber);
         }
     }
 
+    [PunRPC]
+    private void RPC_DropItem(Vector3 position, int playerActorNumber)
+    {
+        isPickedUp = false;
+        gameObject.SetActive(true);
+        transform.position = position;
+        Debug.Log($"Player {playerActorNumber} dropped {gameObject.name}");
+    }
+
     public void NetworkedDrop(Vector3 position)
     {
-        int viewID = photonView.ViewID;
-        PhotonView.Find(viewID).RPC("RPC_RequestDrop", RpcTarget.MasterClient, position, PhotonNetwork.LocalPlayer.ActorNumber);
+        photonView.RPC("RPC_RequestDrop", RpcTarget.MasterClient, position, PhotonNetwork.LocalPlayer.ActorNumber);
     }
 
     private void OnDrawGizmosSelected()

@@ -26,7 +26,8 @@ public class InventoryManager : MonoBehaviourPun
             }
             else
             {
-                Destroy(gameObject);
+                // Destroy only this component, not the whole player GameObject
+                Destroy(this);
             }
         }
         else
@@ -175,5 +176,12 @@ public class InventoryManager : MonoBehaviourPun
     public int GetMaxSlots()
     {
         return maxSlots;
+    }
+
+    public bool HasSpace()
+    {
+        foreach (var slot in inventorySlots)
+            if (slot == null) return true;
+        return false;
     }
 }

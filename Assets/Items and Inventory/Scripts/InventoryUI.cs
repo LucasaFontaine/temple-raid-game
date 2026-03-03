@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 using System.Collections.Generic;
+using Photon.Pun;
 
 public class InventoryUI : MonoBehaviour
 {
@@ -12,6 +13,17 @@ public class InventoryUI : MonoBehaviour
     [SerializeField] private Color emptyColor = new Color(0.5f, 0.5f, 0.5f, 0.3f);
 
     private List<InventorySlotUI> slotUIList = new List<InventorySlotUI>();
+
+    private void Awake()
+    {
+        // Disable this HUD for remote players' prefabs so only the local player sees their own inventory
+        PhotonView pv = GetComponentInParent<PhotonView>();
+        if (pv != null && !pv.IsMine)
+        {
+            gameObject.SetActive(false);
+            return;
+        }
+    }
 
     private void Start()
     {

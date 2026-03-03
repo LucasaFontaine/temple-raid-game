@@ -1,10 +1,22 @@
 using TMPro;
 using UnityEngine;
+using Photon.Pun;
 
 public class MoneyUI : MonoBehaviour
 {
     [SerializeField] TextMeshProUGUI moneyText;
     [SerializeField] PlayerMoney playerMoney;
+
+    void Awake()
+    {
+        // Disable this HUD for remote players' prefabs
+        PhotonView pv = GetComponentInParent<PhotonView>();
+        if (pv != null && !pv.IsMine)
+        {
+            gameObject.SetActive(false);
+            return;
+        }
+    }
 
     void Start()
     {
@@ -16,10 +28,16 @@ public class MoneyUI : MonoBehaviour
     {
         if (playerMoney == null)
         {
-            // Assign local player's money automatically
-            PlayerMoney localMoney = FindAnyObjectByType<PlayerMoney>();
-            if (localMoney != null)
-                playerMoney = localMoney;
+            // Find only the LOCAL player's PlayerMoney component
+            foreach (var money in FindObjectsByType<PlayerMoney>(FindObjectsSortMode.None))
+            {
+                PhotonView pv = money.GetComponent<PhotonView>();
+                if (pv != null && pv.IsMine)
+                {
+                    playerMoney = money;
+                    break;
+                }
+            }
         }
 
         if (playerMoney != null)
