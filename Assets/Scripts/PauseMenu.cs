@@ -14,7 +14,6 @@ public class PauseMenu : MonoBehaviour
 
     void Awake()
     {
-        // Disable this HUD for remote players' prefabs
         PhotonView pv = GetComponentInParent<PhotonView>();
         if (pv != null && !pv.IsMine)
         {
@@ -44,24 +43,20 @@ public class PauseMenu : MonoBehaviour
         isPaused = true;
         container.SetActive(true);
 
-        // Cursor unlock
         Cursor.lockState = CursorLockMode.None;
         Cursor.visible = true;
 
-        // Disable player movement
         PlayerInputDisabled(true);
 
-        // Ensure EventSystem exists
-        if (EventSystem.current == null)
-        {
-            new GameObject("EventSystem", typeof(EventSystem), typeof(StandaloneInputModule));
-        }
+        // Lock the camera in place
+        if (playerLook != null)
+            playerLook.LockRotation();
 
-        // Optional: select first button automatically
+        if (EventSystem.current == null)
+            new GameObject("EventSystem", typeof(EventSystem), typeof(StandaloneInputModule));
+
         if (container.transform.childCount > 0)
-        {
             EventSystem.current.SetSelectedGameObject(container.transform.GetChild(0).gameObject);
-        }
     }
 
     public void ResumeGame()
@@ -69,11 +64,13 @@ public class PauseMenu : MonoBehaviour
         isPaused = false;
         container.SetActive(false);
 
-        // Cursor lock
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
 
-        // Enable player movement
+        // Unlock the camera before re-enabling input
+        if (playerLook != null)
+            playerLook.UnlockRotation();
+
         PlayerInputDisabled(false);
     }
 
