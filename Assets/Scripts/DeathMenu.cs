@@ -73,10 +73,9 @@ public class DeathMenu : MonoBehaviour
 
     public void MainMenuButton()
     {
-        SceneManager.LoadScene("MainMenu");
-
         Cursor.lockState = CursorLockMode.None;
         Cursor.visible = true;
+        PhotonDisconnector.DisconnectAndLoadMenu();
     }
 
     private void PlayerInputDisabled(bool disabled)
