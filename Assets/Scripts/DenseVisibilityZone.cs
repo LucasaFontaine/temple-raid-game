@@ -1,5 +1,6 @@
 using UnityEngine;
 using System.Collections;
+using Photon.Pun;
 
 public class DenseVisibilityZone : MonoBehaviour
 {
@@ -24,6 +25,10 @@ public class DenseVisibilityZone : MonoBehaviour
     {
         if (!other.CompareTag("Player")) return;
 
+        // Only affect the local player
+        PhotonView pv = other.GetComponentInParent<PhotonView>();
+        if (pv == null || !pv.IsMine) return;
+
         cam = other.GetComponentInChildren<Camera>();
         if (!cam) return;
 
@@ -46,9 +51,12 @@ public class DenseVisibilityZone : MonoBehaviour
     {
         if (!other.CompareTag("Player")) return;
 
+        // Only affect the local player
+        PhotonView pv = other.GetComponentInParent<PhotonView>();
+        if (pv == null || !pv.IsMine) return;
+
         inside = false;
 
-        // RESTORE SKYBOX IMMEDIATELY
         RenderSettings.skybox = originalSkybox;
 
         StartTransition(
