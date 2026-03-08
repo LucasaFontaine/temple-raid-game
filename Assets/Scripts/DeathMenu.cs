@@ -16,7 +16,6 @@ public class DeathMenu : MonoBehaviour
 
     void Awake()
     {
-        // Disable this HUD for remote players' prefabs
         PhotonView pv = GetComponentInParent<PhotonView>();
         if (pv != null && !pv.IsMine)
         {
@@ -32,14 +31,12 @@ public class DeathMenu : MonoBehaviour
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
 
-        // Subscribe to death event
         if (playerHealth != null)
             playerHealth.Died += OnPlayerDied;
     }
 
     void OnDestroy()
     {
-        // Unsubscribe to avoid memory leaks
         if (playerHealth != null)
             playerHealth.Died -= OnPlayerDied;
     }
@@ -49,26 +46,24 @@ public class DeathMenu : MonoBehaviour
         if (isDead) return;
         isDead = true;
 
-        container.SetActive(true);
+        // Disable input FIRST
+        PlayerInputDisabled(true);
 
-        // Unlock cursor for UI
+        // Lock the camera in place before unlocking cursor
+        if (playerLook != null)
+            playerLook.LockRotation();
+
+        // Then unlock cursor
         Cursor.lockState = CursorLockMode.None;
         Cursor.visible = true;
 
-        // Disable player controls
-        PlayerInputDisabled(true);
+        container.SetActive(true);
 
-        // Ensure EventSystem exists
         if (EventSystem.current == null)
-        {
             new GameObject("EventSystem", typeof(EventSystem), typeof(StandaloneInputModule));
-        }
 
-        // Auto-select first button (optional)
         if (container.transform.childCount > 0)
-        {
             EventSystem.current.SetSelectedGameObject(container.transform.GetChild(0).gameObject);
-        }
     }
 
     public void MainMenuButton()
