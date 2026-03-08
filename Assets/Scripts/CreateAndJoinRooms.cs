@@ -10,7 +10,6 @@ public class CreateAndJoinRooms : MonoBehaviourPunCallbacks
     public TMP_InputField createInput;
     public TMP_InputField joinInput;
     public TMP_InputField playerNameInput;
-    public GameObject nicknameInput;
 
     public void CreateRoom()
     {
@@ -26,6 +25,5 @@ public class CreateAndJoinRooms : MonoBehaviourPunCallbacks
     {
         PhotonNetwork.NickName = playerNameInput.text;
         PhotonNetwork.LoadLevel("Map1");
-        nicknameInput.SetActive(false);
     }
 }

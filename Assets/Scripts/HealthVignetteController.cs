@@ -39,9 +39,14 @@ public class HealthVignetteController : MonoBehaviourPun
             enabled = false;
             return;
         }
-        if (!volume.profile.TryGet(out vignette))
+
+        // Auto-find the Volume on the prefab instead of the scene
+        if (volume == null)
+            volume = GetComponentInChildren<Volume>();
+
+        if (volume == null || !volume.profile.TryGet(out vignette))
         {
-            Debug.LogError("Vignette not found on Volume!");
+            Debug.LogError("Vignette not found on player Volume!");
             enabled = false;
             return;
         }

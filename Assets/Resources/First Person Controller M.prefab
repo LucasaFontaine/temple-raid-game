@@ -1325,6 +1325,77 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!1 &3180517334609745207
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4059749135450993276}
+  - component: {fileID: 8099938374550186846}
+  - component: {fileID: 3452361081675725735}
+  m_Layer: 0
+  m_Name: Global Volume
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4059749135450993276
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3180517334609745207}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 7387388534739272812}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &8099938374550186846
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3180517334609745207}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 172515602e62fb746b5d573b38a5fe58, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Unity.RenderPipelines.Core.Runtime::UnityEngine.Rendering.Volume
+  m_IsGlobal: 0
+  priority: 0
+  blendDistance: 0
+  weight: 1
+  sharedProfile: {fileID: 11400000, guid: caef400a61f0f5d41ac4fc25e0bb0482, type: 2}
+--- !u!65 &3452361081675725735
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3180517334609745207}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.8037793, y: 2.3379407, z: 0.42042714}
+  m_Center: {x: -0.015299946, y: 1.1615937, z: 0.010310978}
 --- !u!1 &3546825516886074270
 GameObject:
   m_ObjectHideFlags: 0
@@ -1448,6 +1519,7 @@ Transform:
   - {fileID: 3977747292453183099}
   - {fileID: 3743442734409140785}
   - {fileID: 1945990821830075205}
+  - {fileID: 4059749135450993276}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!136 &2800760561667664531
@@ -1588,7 +1660,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::HealthVignetteController
   playerHealth: {fileID: 26194273723931475}
-  volume: {fileID: 3407467242590688310}
+  volume: {fileID: 8099938374550186846}
   maxHealthIntensity: 0.5
   damageFlashIntensity: 0.5
   flashFadeSpeed: 6
@@ -2717,7 +2789,6 @@ GameObject:
   - component: {fileID: 785860201372313161}
   - component: {fileID: 9137918573654219113}
   - component: {fileID: 2032646896876523508}
-  - component: {fileID: 3407467242590688310}
   - component: {fileID: 7290032770509085392}
   m_Layer: 0
   m_Name: First Person Camera
@@ -2883,23 +2954,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 91fcfd0651309d04eb3f0425d3e481a5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ClearRenderTexture
---- !u!114 &3407467242590688310
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7642354828786842946}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 172515602e62fb746b5d573b38a5fe58, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Unity.RenderPipelines.Core.Runtime::UnityEngine.Rendering.Volume
-  m_IsGlobal: 1
-  priority: 0
-  blendDistance: 0
-  weight: 1
-  sharedProfile: {fileID: 11400000, guid: caef400a61f0f5d41ac4fc25e0bb0482, type: 2}
 --- !u!114 &7290032770509085392
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2912,7 +2966,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b4addef1e3abb7940b4d32e463c281b0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::VignetteController
-  volume: {fileID: 3407467242590688310}
+  volume: {fileID: 8099938374550186846}
 --- !u!1 &7716425099903724619
 GameObject:
   m_ObjectHideFlags: 0
