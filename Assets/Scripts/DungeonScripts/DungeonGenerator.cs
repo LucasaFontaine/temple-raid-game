@@ -8,6 +8,7 @@ public class DungeonGenerator : MonoBehaviour
     [Header("Room Prefabs")]
     public List<GameObject> roomPrefabs;
     public GameObject startRoomPrefab;
+    public GameObject startHallwayPrefab;
     public GameObject endRoomPrefab;
 
     [Header("Dead End Rooms")]
@@ -21,8 +22,9 @@ public class DungeonGenerator : MonoBehaviour
     public int maxRooms = 15;
     public int maxAttempts = 30;
 
-    [Header("Player")]
-    public GameObject playerPrefab;
+    [Header("Boundary")]
+    public float boundaryZ = 0f; // rooms cannot generate past
+    public bool useBoundary = true;
 
     [Header("Debug")]
     public bool disableOverlapCheck = false;
@@ -64,9 +66,24 @@ public class DungeonGenerator : MonoBehaviour
         placedRooms.Add(startRoom);
         roomCount++;
 
-        foreach (var doorway in startRoom.GetOpenDoorways())
-            openDoorways.Enqueue(doorway);
+        if (startHallwayPrefab != null)
+            {
+                List<DoorwayPoint> startDoorways = startRoom.GetOpenDoorways();
+                if (startDoorways.Count > 0)
+                {
+                    DoorwayPoint firstDoorway = startDoorways[0];
+                    bool hallwayPlaced = TryPlaceRoom(startHallwayPrefab, firstDoorway);
+                    if (!hallwayPlaced)
+                        Debug.LogWarning("Failed to place start hallway!");
+                }
+            }
 
+            // Queue remaining open doorways for normal generation
+        foreach (var room in placedRooms)
+            foreach (var doorway in room.GetOpenDoorways())
+                if (!openDoorways.Contains(doorway))
+                    openDoorways.Enqueue(doorway);
+    
         while (roomCount < targetRoomCount && openDoorways.Count > 0)
         {
             DoorwayPoint currentDoorway = openDoorways.Dequeue();
@@ -102,9 +119,6 @@ public class DungeonGenerator : MonoBehaviour
             DoorwayPoint remaining = openDoorways.Dequeue();
             SealDoorway(remaining);
         }
-
-        if (playerPrefab != null)
-            Instantiate(playerPrefab, transform.position + Vector3.up, Quaternion.identity);
     }
 
     bool TryPlaceRoom(GameObject prefab, DoorwayPoint targetDoorway)
@@ -122,6 +136,12 @@ public class DungeonGenerator : MonoBehaviour
         DoorwayPoint connectingDoorway = newDoorways[Random.Range(0, newDoorways.Count)];
 
         AlignRoom(newObj, connectingDoorway, targetDoorway);
+
+        if (useBoundary && newObj.transform.position.z < boundaryZ)
+        {
+            Destroy(newObj);
+            return false;
+        }
 
         if (RoomOverlaps(newRoom))
         {

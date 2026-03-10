@@ -14,7 +14,7 @@ OcclusionCullingSettings:
 RenderSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 10
-  m_Fog: 0
+  m_Fog: 1
   m_FogColor: {r: 0.4431373, g: 0.6313726, b: 0.7960785, a: 1}
   m_FogMode: 3
   m_FogDensity: 0.003
@@ -407,8 +407,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 1050, y: 300, z: 316.53864}
-  m_Center: {x: 0, y: 0, z: -8.269318}
+  m_Size: {x: 1050, y: 220.20685, z: 210.39526}
+  m_Center: {x: 0, y: -39.896576, z: -61.341003}
 --- !u!23 &192303628
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -1650,14 +1650,17 @@ MonoBehaviour:
   - {fileID: 8598011096855817735, guid: e46e45ca47a944c7b9c0f5f066f434a2, type: 3}
   - {fileID: 9091108382494160812, guid: 76e74f969d6c8488c9da551dd58d0cf7, type: 3}
   startRoomPrefab: {fileID: 8225030305807993809, guid: 4014fabae8189423ea7814366449284a, type: 3}
+  startHallwayPrefab: {fileID: 4088595414808157279, guid: dfe25e66e352ce74baa7964d582e9a70, type: 3}
   endRoomPrefab: {fileID: 6606980400389580197, guid: eca2051d602804f6e813789ed37aa99c, type: 3}
   deadEndRoomPrefabs: []
   minRoomsBeforeDeadEnd: 5
   doorwayWallPrefab: {fileID: 3068075419380998990, guid: 12f3e27b2c8cb447c81f2c5f5e7aa6bb, type: 3}
-  minRooms: 20
-  maxRooms: 30
+  doorwayWallYOffset: 3
+  minRooms: 40
+  maxRooms: 60
   maxAttempts: 30
-  playerPrefab: {fileID: 0}
+  boundaryZ: 534.4
+  useBoundary: 1
   disableOverlapCheck: 0
 --- !u!4 &1727415364
 Transform:
