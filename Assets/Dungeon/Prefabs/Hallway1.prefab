@@ -9,6 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 991710261257767500}
+  - component: {fileID: 3868902413755998991}
   m_Layer: 0
   m_Name: Entry1
   m_TagString: Untagged
@@ -25,12 +26,24 @@ Transform:
   m_GameObject: {fileID: 415716845458469100}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0.70710707, z: -0, w: 0.7071066}
-  m_LocalPosition: {x: -6.9999976, y: 0, z: 0}
+  m_LocalPosition: {x: -7.2340775, y: -0.05, z: -7.92066}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 533612704270867915}
+  m_Father: {fileID: 7724226129427532476}
   m_LocalEulerAnglesHint: {x: 0, y: -90, z: 0}
+--- !u!114 &3868902413755998991
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 415716845458469100}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ca47598d66c4c4b529b886a187de916d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::DoorwayPoint
 --- !u!1 &2226150818297083671
 GameObject:
   m_ObjectHideFlags: 0
@@ -475,6 +488,59 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!1 &5199320462321664895
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 592505332261893239}
+  - component: {fileID: 2503244614908895698}
+  m_Layer: 8
+  m_Name: RoomBounds
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &592505332261893239
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5199320462321664895}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0.67, z: -7.92}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 7724226129427532476}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &2503244614908895698
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5199320462321664895}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 12.398527, y: 1, z: 4.3465357}
+  m_Center: {x: -0.3959515, y: 0, z: -0.060067654}
 --- !u!1 &5422814839346864341
 GameObject:
   m_ObjectHideFlags: 0
@@ -484,6 +550,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7724226129427532476}
+  - component: {fileID: 3842383646803527}
   m_Layer: 0
   m_Name: Hallway1
   m_TagString: Untagged
@@ -507,13 +574,31 @@ Transform:
   - {fileID: 4861152997227314781}
   - {fileID: 7043454006988015926}
   - {fileID: 4733643748911986251}
-  - {fileID: 533612704270867915}
   - {fileID: 1915083440769246545}
   - {fileID: 4652820101903997727}
   - {fileID: 8624513417530301869}
   - {fileID: 3245857379039355747}
+  - {fileID: 991710261257767500}
+  - {fileID: 7403009864008827854}
+  - {fileID: 592505332261893239}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &3842383646803527
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5422814839346864341}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b855220c5ddd34c9a9118cde57ca3dd3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Room
+  doorways:
+  - {fileID: 3868902413755998991}
+  - {fileID: 7448931878584682967}
+  roomBounds: {fileID: 2503244614908895698}
 --- !u!1 &5829186825007235496
 GameObject:
   m_ObjectHideFlags: 0
@@ -523,6 +608,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7403009864008827854}
+  - component: {fileID: 7448931878584682967}
   m_Layer: 0
   m_Name: Entry2
   m_TagString: Untagged
@@ -538,13 +624,25 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5829186825007235496}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0.7071068, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: 7, y: 0, z: -0.00000166893}
+  m_LocalRotation: {x: -0, y: 0.7071068, z: -0, w: 0.7071068}
+  m_LocalPosition: {x: 6.76592, y: -0.05, z: -7.920662}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 533612704270867915}
+  m_Father: {fileID: 7724226129427532476}
   m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
+--- !u!114 &7448931878584682967
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5829186825007235496}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ca47598d66c4c4b529b886a187de916d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::DoorwayPoint
 --- !u!1 &6518001045899452897
 GameObject:
   m_ObjectHideFlags: 0
@@ -878,36 +976,3 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!1 &8755897709356630923
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 533612704270867915}
-  m_Layer: 0
-  m_Name: EntryPoints
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &533612704270867915
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8755897709356630923}
-  serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.23408, y: -0.05, z: -7.92066}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 991710261257767500}
-  - {fileID: 7403009864008827854}
-  m_Father: {fileID: 7724226129427532476}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

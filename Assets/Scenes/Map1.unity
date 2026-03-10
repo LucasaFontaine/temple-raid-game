@@ -14,7 +14,7 @@ OcclusionCullingSettings:
 RenderSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 10
-  m_Fog: 1
+  m_Fog: 0
   m_FogColor: {r: 0.4431373, g: 0.6313726, b: 0.7960785, a: 1}
   m_FogMode: 3
   m_FogDensity: 0.003
@@ -571,10 +571,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: '::'
   playerPrefab: {fileID: 3552255921584938658, guid: 4f1aec0b79c74b74a844835dabac76af, type: 3}
-  minX: 312.8639
-  maxX: 322.8639
-  minZ: 250.4755
-  maxZ: 260.4755
+  minX: 478.57
+  maxX: 478.57
+  minZ: 504.95
+  maxZ: 504.95
 --- !u!4 &317449928
 Transform:
   m_ObjectHideFlags: 0
@@ -584,7 +584,7 @@ Transform:
   m_GameObject: {fileID: 317449926}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 312.86386, y: 17.79, z: 266.36}
+  m_LocalPosition: {x: 478.57, y: 51.17, z: 504.95}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1005,8 +1005,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 1000, y: 300, z: 1}
-  m_Center: {x: -1.4154205, y: 0, z: 0}
+  m_Size: {x: 1000, y: 153.79364, z: 1}
+  m_Center: {x: -1.4154053, y: 73.10318, z: 0}
 --- !u!23 &787060042
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -1614,6 +1614,66 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1727415362
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1727415364}
+  - component: {fileID: 1727415363}
+  m_Layer: 0
+  m_Name: DungeonGenerator
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1727415363
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1727415362}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e7c902de1c2f34c42864e0631f15934b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::DungeonGenerator
+  roomPrefabs:
+  - {fileID: 5422814839346864341, guid: ef2de9399f73ba94992e1e3755d25685, type: 3}
+  - {fileID: 4088595414808157279, guid: dfe25e66e352ce74baa7964d582e9a70, type: 3}
+  - {fileID: 4415871447324785729, guid: 1669009576a1b724cb2c6071a774e3ff, type: 3}
+  - {fileID: 8598011096855817735, guid: e46e45ca47a944c7b9c0f5f066f434a2, type: 3}
+  - {fileID: 9091108382494160812, guid: 76e74f969d6c8488c9da551dd58d0cf7, type: 3}
+  startRoomPrefab: {fileID: 8225030305807993809, guid: 4014fabae8189423ea7814366449284a, type: 3}
+  endRoomPrefab: {fileID: 6606980400389580197, guid: eca2051d602804f6e813789ed37aa99c, type: 3}
+  deadEndRoomPrefabs: []
+  minRoomsBeforeDeadEnd: 5
+  doorwayWallPrefab: {fileID: 3068075419380998990, guid: 12f3e27b2c8cb447c81f2c5f5e7aa6bb, type: 3}
+  minRooms: 20
+  maxRooms: 30
+  maxAttempts: 30
+  playerPrefab: {fileID: 0}
+  disableOverlapCheck: 0
+--- !u!4 &1727415364
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1727415362}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0.7071068, z: 0, w: 0.7071068}
+  m_LocalPosition: {x: 486.21, y: 47.76, z: 524.4}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
 --- !u!1001 &1821065981
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2244,3 +2304,4 @@ SceneRoots:
   - {fileID: 69882635}
   - {fileID: 2078015728}
   - {fileID: 322943712}
+  - {fileID: 1727415364}

@@ -453,6 +453,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4881291814031383348}
+  - component: {fileID: 4918073553975821379}
   m_Layer: 0
   m_Name: Entry2
   m_TagString: Untagged
@@ -468,13 +469,25 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3754307180388790247}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0.7071068, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: 7, y: 0, z: -0.00000166893}
+  m_LocalRotation: {x: -0, y: 0.7071068, z: -0, w: 0.7071068}
+  m_LocalPosition: {x: 6.76592, y: -0.05, z: -7.920662}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 8041185480012711110}
+  m_Father: {fileID: 4176626923659227445}
   m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
+--- !u!114 &4918073553975821379
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3754307180388790247}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ca47598d66c4c4b529b886a187de916d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::DoorwayPoint
 --- !u!1 &4415871447324785729
 GameObject:
   m_ObjectHideFlags: 0
@@ -484,6 +497,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4176626923659227445}
+  - component: {fileID: 3206659004880610409}
   m_Layer: 0
   m_Name: Room2
   m_TagString: Untagged
@@ -504,16 +518,34 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 4834827256789289731}
   - {fileID: 8124131126565335756}
   - {fileID: 6799325876675730467}
   - {fileID: 7662791374099326782}
   - {fileID: 4168748716520518837}
   - {fileID: 5558617603275853069}
-  - {fileID: 8041185480012711110}
   - {fileID: 6848479237142563386}
   - {fileID: 2902870797787324058}
+  - {fileID: 3329471798466985985}
+  - {fileID: 4881291814031383348}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &3206659004880610409
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4415871447324785729}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b855220c5ddd34c9a9118cde57ca3dd3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Room
+  doorways:
+  - {fileID: 6760460240552217782}
+  - {fileID: 4918073553975821379}
+  roomBounds: {fileID: 3605472252333564372}
 --- !u!1 &5848569240709756899
 GameObject:
   m_ObjectHideFlags: 0
@@ -625,7 +657,7 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!1 &6958293605558518972
+--- !u!1 &6199322707793508388
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -633,31 +665,51 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 8041185480012711110}
-  m_Layer: 0
-  m_Name: EntryPoints
+  - component: {fileID: 4834827256789289731}
+  - component: {fileID: 3605472252333564372}
+  m_Layer: 8
+  m_Name: RoomBounds
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &8041185480012711110
+--- !u!4 &4834827256789289731
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6958293605558518972}
+  m_GameObject: {fileID: 6199322707793508388}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.23408, y: -0.05, z: -7.92066}
+  m_LocalPosition: {x: 0, y: 0.67, z: -7.92}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 3329471798466985985}
-  - {fileID: 4881291814031383348}
+  m_Children: []
   m_Father: {fileID: 4176626923659227445}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &3605472252333564372
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6199322707793508388}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 12.398527, y: 1, z: 12.112087}
+  m_Center: {x: -0.39595127, y: 0, z: 0.008091927}
 --- !u!1 &7764293488765543402
 GameObject:
   m_ObjectHideFlags: 0
@@ -667,6 +719,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3329471798466985985}
+  - component: {fileID: 6760460240552217782}
   m_Layer: 0
   m_Name: Entry1
   m_TagString: Untagged
@@ -683,12 +736,24 @@ Transform:
   m_GameObject: {fileID: 7764293488765543402}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0.70710707, z: -0, w: 0.7071066}
-  m_LocalPosition: {x: -6.9999976, y: 0, z: 0}
+  m_LocalPosition: {x: -7.2340775, y: -0.05, z: -7.92066}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 8041185480012711110}
+  m_Father: {fileID: 4176626923659227445}
   m_LocalEulerAnglesHint: {x: 0, y: -90, z: 0}
+--- !u!114 &6760460240552217782
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7764293488765543402}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ca47598d66c4c4b529b886a187de916d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::DoorwayPoint
 --- !u!1 &8436016697824267232
 GameObject:
   m_ObjectHideFlags: 0
