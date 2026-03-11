@@ -16,7 +16,7 @@ public class DeathMenu : MonoBehaviour
     [Header("Spectator")]
     public SpectatorCamera spectatorCamera;
 
-    private bool isDead = false;
+    public bool isDead = false;
 
     void Awake()
     {

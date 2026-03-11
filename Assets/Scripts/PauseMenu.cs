@@ -11,6 +11,7 @@ public class PauseMenu : MonoBehaviour
     [Header("Player Reference")]
     public FirstPersonMovement playerMovement;
     public FirstPersonLook playerLook;
+    public DeathMenu deathMenu;
 
     void Awake()
     {
@@ -67,11 +68,12 @@ public class PauseMenu : MonoBehaviour
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
 
-        // Unlock the camera before re-enabling input
         if (playerLook != null)
             playerLook.UnlockRotation();
 
-        PlayerInputDisabled(false);
+        // death check
+        if (deathMenu == null || !deathMenu.isDead)
+            PlayerInputDisabled(false);
     }
 
     public void MainMenuButton()
