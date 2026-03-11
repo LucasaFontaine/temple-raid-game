@@ -2,6 +2,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.EventSystems;
 using Photon.Pun;
+using System.Collections;
 
 public class DeathMenu : MonoBehaviour
 {
@@ -11,6 +12,9 @@ public class DeathMenu : MonoBehaviour
     public PlayerHealth playerHealth;
     public FirstPersonMovement playerMovement;
     public FirstPersonLook playerLook;
+
+    [Header("Spectator")]
+    public SpectatorCamera spectatorCamera;
 
     private bool isDead = false;
 
@@ -31,6 +35,9 @@ public class DeathMenu : MonoBehaviour
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
 
+        if (spectatorCamera != null)
+            spectatorCamera.StopSpectating();
+
         if (playerHealth != null)
             playerHealth.Died += OnPlayerDied;
     }
@@ -46,31 +53,39 @@ public class DeathMenu : MonoBehaviour
         if (isDead) return;
         isDead = true;
 
-        // Disable input FIRST
         PlayerInputDisabled(true);
 
-        // Lock the camera in place before unlocking cursor
         if (playerLook != null)
             playerLook.LockRotation();
 
-        // Then unlock cursor
-        Cursor.lockState = CursorLockMode.None;
-        Cursor.visible = true;
+        // Disable first person camera
+        if (playerLook != null && playerLook.playerCamera != null)
+            playerLook.playerCamera.gameObject.SetActive(false);
 
+        // Show death screen briefly then switch to spectator
+        StartCoroutine(SpectateAfterDelay());
+    }
+
+    IEnumerator SpectateAfterDelay()
+    {
+        // Show death container for 2 seconds
         container.SetActive(true);
 
         if (EventSystem.current == null)
             new GameObject("EventSystem", typeof(EventSystem), typeof(StandaloneInputModule));
 
-        if (container.transform.childCount > 0)
-            EventSystem.current.SetSelectedGameObject(container.transform.GetChild(0).gameObject);
-    }
+        yield return new WaitForSeconds(2f);
 
-    public void MainMenuButton()
-    {
-        Cursor.lockState = CursorLockMode.None;
-        Cursor.visible = true;
-        PhotonDisconnector.DisconnectAndLoadMenu();
+        // Hide death screen
+        container.SetActive(false);
+
+        // Lock cursor for spectating
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
+
+        // Start spectating
+        if (spectatorCamera != null)
+            spectatorCamera.StartSpectating();
     }
 
     private void PlayerInputDisabled(bool disabled)
