@@ -1776,7 +1776,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e9403fd434fba8a4ab3f62dc54901e6f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::DamageDealer
-  damage: 100
+  damage: 50
 --- !u!135 &1992283497
 SphereCollider:
   m_ObjectHideFlags: 0
