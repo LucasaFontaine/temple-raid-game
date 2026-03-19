@@ -1662,8 +1662,8 @@ MonoBehaviour:
   minRoomsBeforeDeadEnd: 5
   doorwayWallPrefab: {fileID: 3068075419380998990, guid: 12f3e27b2c8cb447c81f2c5f5e7aa6bb, type: 3}
   doorwayWallYOffset: 3
-  minRooms: 40
-  maxRooms: 60
+  minRooms: 70
+  maxRooms: 80
   maxAttempts: 30
   boundaryZ: 534.4
   useBoundary: 1
