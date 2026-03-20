@@ -14,7 +14,7 @@ public class ReadyButton : MonoBehaviourPunCallbacks
     private bool isReady = false;
     private bool countdownStarted = false;
 
-    const string READY_KEY = "IsReady";
+    private int readyCount = 0;
 
     void Update()
     {
@@ -45,29 +45,21 @@ public class ReadyButton : MonoBehaviourPunCallbacks
     void SetReady()
     {
         isReady = true;
-        ExitGames.Client.Photon.Hashtable props = new ExitGames.Client.Photon.Hashtable { { READY_KEY, true } };
-        PhotonNetwork.LocalPlayer.SetCustomProperties(props);
+        // Tell all clients this player is ready
+        photonView.RPC("PlayerReadyRPC", RpcTarget.All);
     }
 
-    public override void OnPlayerPropertiesUpdate(Player targetPlayer, ExitGames.Client.Photon.Hashtable changedProps)
+    [PunRPC]
+    void PlayerReadyRPC()
     {
-        if (!changedProps.ContainsKey(READY_KEY)) return;
-        CheckAllReady();
-    }
+        readyCount++;
+        Debug.Log("Ready count: " + readyCount + "/" + PhotonNetwork.PlayerList.Length);
 
-    void CheckAllReady()
-    {
-        if (countdownStarted) return;
-
-        foreach (Player player in PhotonNetwork.PlayerList)
+        if (readyCount >= PhotonNetwork.PlayerList.Length && !countdownStarted)
         {
-            object isPlayerReady;
-            if (!player.CustomProperties.TryGetValue(READY_KEY, out isPlayerReady) || !(bool)isPlayerReady)
-                return;
+            countdownStarted = true;
+            StartCoroutine(StartCountdown());
         }
-
-        countdownStarted = true;
-        StartCoroutine(StartCountdown());
     }
 
     IEnumerator StartCountdown()
@@ -80,6 +72,11 @@ public class ReadyButton : MonoBehaviourPunCallbacks
 
     public override void OnPlayerLeftRoom(Player otherPlayer)
     {
-        CheckAllReady();
+        // Recheck in case a player left while others were readying
+        if (readyCount >= PhotonNetwork.PlayerList.Length && !countdownStarted)
+        {
+            countdownStarted = true;
+            StartCoroutine(StartCountdown());
+        }
     }
 }

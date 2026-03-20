@@ -2421,6 +2421,101 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 58d36e3a578ff48c2a752eeb3a26287c, type: 3}
+--- !u!1001 &5884394524305255224
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 4743690442194399333, guid: 5cd46b8781ace407ebd3c8aa1259c5c7, type: 3}
+      propertyPath: m_Name
+      value: ButtonTest
+      objectReference: {fileID: 0}
+    - target: {fileID: 5033084774224401465, guid: 5cd46b8781ace407ebd3c8aa1259c5c7, type: 3}
+      propertyPath: sceneToLoad
+      value: Museum
+      objectReference: {fileID: 0}
+    - target: {fileID: 5033084774224401465, guid: 5cd46b8781ace407ebd3c8aa1259c5c7, type: 3}
+      propertyPath: countdownTime
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7984947136323793876, guid: 5cd46b8781ace407ebd3c8aa1259c5c7, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 484.05502
+      objectReference: {fileID: 0}
+    - target: {fileID: 7984947136323793876, guid: 5cd46b8781ace407ebd3c8aa1259c5c7, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 48.44
+      objectReference: {fileID: 0}
+    - target: {fileID: 7984947136323793876, guid: 5cd46b8781ace407ebd3c8aa1259c5c7, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 516.118
+      objectReference: {fileID: 0}
+    - target: {fileID: 7984947136323793876, guid: 5cd46b8781ace407ebd3c8aa1259c5c7, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7984947136323793876, guid: 5cd46b8781ace407ebd3c8aa1259c5c7, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7984947136323793876, guid: 5cd46b8781ace407ebd3c8aa1259c5c7, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7984947136323793876, guid: 5cd46b8781ace407ebd3c8aa1259c5c7, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7984947136323793876, guid: 5cd46b8781ace407ebd3c8aa1259c5c7, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7984947136323793876, guid: 5cd46b8781ace407ebd3c8aa1259c5c7, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7984947136323793876, guid: 5cd46b8781ace407ebd3c8aa1259c5c7, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 668207926485256826, guid: 5cd46b8781ace407ebd3c8aa1259c5c7, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 5884394524305255226}
+  m_SourcePrefab: {fileID: 100100000, guid: 5cd46b8781ace407ebd3c8aa1259c5c7, type: 3}
+--- !u!1 &5884394524305255225 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 668207926485256826, guid: 5cd46b8781ace407ebd3c8aa1259c5c7, type: 3}
+  m_PrefabInstance: {fileID: 5884394524305255224}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &5884394524305255226
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5884394524305255225}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aa584fbee541324448dd18d8409c7a41, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: PhotonUnityNetworking::Photon.Pun.PhotonView
+  ObservedComponentsFoldoutOpen: 1
+  Group: 0
+  prefixField: -1
+  Synchronization: 3
+  OwnershipTransfer: 0
+  observableSearch: 2
+  ObservedComponents: []
+  sceneViewId: 999
+  InstantiationId: 0
+  isRuntimeInstantiated: 0
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
@@ -2447,3 +2542,4 @@ SceneRoots:
   - {fileID: 156628504166168969}
   - {fileID: 564706863}
   - {fileID: 1915072928}
+  - {fileID: 5884394524305255224}

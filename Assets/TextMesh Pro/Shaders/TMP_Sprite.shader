@@ -1,33 +1,90 @@
-{
-  "name": "com.unity.collections",
-  "displayName": "Collections",
-  "version": "2.6.2",
-  "unity": "2022.3",
-  "unityRelease": "20f1",
-  "dependencies": {
-    "com.unity.burst": "1.8.23",
-    "com.unity.mathematics": "1.3.2",
-    "com.unity.nuget.mono-cecil": "1.11.5",
-    "com.unity.test-framework": "1.4.6",
-    "com.unity.test-framework.performance": "3.0.3"
-  },
-  "description": "A C# collections library providing data structures that can be used in jobs, and optimized by Burst compiler.",
-  "keywords": [
-    "dots",
-    "collections",
-    "unity"
-  ],
-  "_upm": {
-    "changelog": "### Changed\n\n* Updated Burst dependency to version 1.8.23."
-  },
-  "upmCi": {
-    "footprint": "42cae399f4515d49e1ee8a8dafb6d2a9cf98306a"
-  },
-  "documentationUrl": "https://docs.unity3d.com/Packages/com.unity.collections@2.6/manual/index.html",
-  "repository": {
-    "url": "https://github.cds.internal.unity3d.com/unity/dots.git",
-    "type": "git",
-    "revision": "34a49c9a68f70872c0a108dbef6cdea306d6b593"
-  },
-  "_fingerprint": "aea9d3bd5e19f2a90fc3a39919974a5f3613a159"
+Shader "TextMeshPro/Sprite" {
+
+Properties {
+    _MainTex        ("Texture",     2D) = "white" {}
+    _Color          ("Tint",        Color) = (1,1,1,1)
+    _StencilComp    ("Stencil Comparison",  Float) = 8
+    _Stencil        ("Stencil ID",          Float) = 0
+    _StencilOp      ("Stencil Operation",   Float) = 0
+    _StencilWriteMask ("Stencil Write Mask",Float) = 255
+    _StencilReadMask ("Stencil Read Mask",  Float) = 255
+    _ColorMask      ("Color Mask",          Float) = 15
+}
+
+SubShader {
+    Tags {
+        "Queue"="Transparent"
+        "IgnoreProjector"="True"
+        "RenderType"="Transparent"
+        "PreviewType"="Plane"
+        "CanUseSpriteAtlas"="True"
+    }
+
+    Stencil {
+        Ref [_Stencil]
+        Comp [_StencilComp]
+        Pass [_StencilOp]
+        ReadMask [_StencilReadMask]
+        WriteMask [_StencilWriteMask]
+    }
+
+    Cull Off
+    Lighting Off
+    ZWrite Off
+    ZTest [unity_GUIZTestMode]
+    Blend SrcAlpha OneMinusSrcAlpha
+    ColorMask [_ColorMask]
+
+    Pass {
+        Name "Default"
+        CGPROGRAM
+        #pragma vertex vert
+        #pragma fragment frag
+        #pragma target 2.0
+
+        #include "UnityCG.cginc"
+        #include "UnityUI.cginc"
+
+        struct appdata_t {
+            float4 vertex   : POSITION;
+            float4 color    : COLOR;
+            float2 texcoord : TEXCOORD0;
+            UNITY_VERTEX_INPUT_INSTANCE_ID
+        };
+
+        struct v2f {
+            float4 vertex   : SV_POSITION;
+            fixed4 color    : COLOR;
+            float2 texcoord : TEXCOORD0;
+            float4 worldPosition : TEXCOORD1;
+            UNITY_VERTEX_OUTPUT_STEREO
+        };
+
+        sampler2D _MainTex;
+        fixed4 _Color;
+        fixed4 _TextureSampleAdd;
+        float4 _ClipRect;
+
+        v2f vert(appdata_t v) {
+            v2f OUT;
+            UNITY_SETUP_INSTANCE_ID(v);
+            UNITY_INITIALIZE_VERTEX_OUTPUT_STEREO(OUT);
+            OUT.worldPosition = v.vertex;
+            OUT.vertex = UnityObjectToClipPos(OUT.worldPosition);
+            OUT.texcoord = v.texcoord;
+            OUT.color = v.color * _Color;
+            return OUT;
+        }
+
+        fixed4 frag(v2f IN) : SV_Target {
+            half4 color = (tex2D(_MainTex, IN.texcoord) + _TextureSampleAdd) * IN.color;
+            color.a *= UnityGet2DClipping(IN.worldPosition.xy, _ClipRect);
+            #ifdef UNITY_UI_ALPHACLIP
+            clip (color.a - 0.001);
+            #endif
+            return color;
+        }
+        ENDCG
+    }
+}
 }
