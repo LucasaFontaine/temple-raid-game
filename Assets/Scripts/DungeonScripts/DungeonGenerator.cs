@@ -78,7 +78,7 @@ public class DungeonGenerator : MonoBehaviour
                 }
             }
 
-            // Queue remaining open doorways for normal generation
+            // queue remaining open doorways for normal generation
         foreach (var room in placedRooms)
             foreach (var doorway in room.GetOpenDoorways())
                 if (!openDoorways.Contains(doorway))
